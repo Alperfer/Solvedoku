@@ -62,7 +62,7 @@ public class Solvedoku extends Application{
         primaryStage.setResizable(false);
         primaryStage.show();
     }
-
+    //Populate the UI
     public void setScene(FlowPane fp)
     {
         HBox buts = new HBox() ;
@@ -88,9 +88,10 @@ public class Solvedoku extends Application{
         
     }
     
+    //User actions
     public void actions()
     {
-       
+          //Clear board
           clear.setOnMouseClicked(e -> {
           for(int j=0 ; j<stackTrack.length ; j++)
           {   
@@ -99,7 +100,7 @@ public class Solvedoku extends Application{
             numTrack[j].setText("-");
           }
         });
-        
+        //Fill board with solution
         solve.setOnMouseClicked(e -> {
             fillGrid(grid,numTrack) ;
             if(checkParameter(grid))
@@ -116,7 +117,7 @@ public class Solvedoku extends Application{
                 clear.fireEvent(e);
             }
         });
-        
+        //Cell increase and decrease
         for(int i=0 ; i<stackTrack.length; i++)
         {
             Text tp = numTrack[i] ;
@@ -173,7 +174,7 @@ public class Solvedoku extends Application{
         }
         
     }
-   
+    //Backtracking algorithm to solve the puzzle. Takes in a seperate 2-D array filled with users entry. Solves it and populates the UI with the solution.
     public boolean solve(int[][] board)
     {
         
@@ -201,7 +202,7 @@ public class Solvedoku extends Application{
           }
        return true ;       
     }
-    
+   //Check if a safe move
    public boolean isSafe(int row,int col,int num,int[][] board)
    {
         int r = row - row%3 ;
@@ -270,7 +271,7 @@ public class Solvedoku extends Application{
       
       return true;
    }
-   
+   //Fill the UI with solved 2D array
    public void fillFinal()
    {
        for(int j=0 ;j<9 ; j++)
